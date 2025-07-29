@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Log IP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        tr:hover {background-color: #f1f1f1;}
+        .suspicious {
+            background-color: #ffe6e6;
+            color: #cc0000;
+            font-weight: bold;
+        }
+        .ok {
+            background-color: #e6ffe6;
+            color: #007700;
+        }
+    </style>
+</head>
+<body>
+    <h1>Log Aktivitas IP</h1>
+
+    <div style="margin-bottom: 20px;">
+        <a href="/" style="
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 6px;
+            font-weight: bold;
+        ">← Kembali ke Beranda</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>Waktu</th>
+            <th>IP Address</th>
+            <th>Status</th>
+        </tr>
+        {% for log in logs %}
+        <tr class="{{ 'suspicious' if log.status == 'SUSPICIOUS' else 'ok' }}">
+            <td>{{ log.time }}</td>
+            <td>{{ log.ip }}</td>
+            <td>{{ log.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="margin-top: 40px; text-align: center; font-size: 0.9em; color: #777;">
+        Dibuat oleh: <strong>Anggel Marya Savrila</strong>
+    </div>
+</body>
+</html>
